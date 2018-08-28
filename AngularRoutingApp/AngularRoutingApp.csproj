@@ -110,6 +110,7 @@
     <Folder Include="apm\.vscode\" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="apm\src\app\app-routing.module.ts" />
     <TypeScriptCompile Include="apm\src\app\app.component.ts" />
     <TypeScriptCompile Include="apm\src\app\app.module.ts" />
     <TypeScriptCompile Include="apm\src\app\home\welcome.component.ts" />
