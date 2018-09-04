@@ -125,6 +125,7 @@
     <TypeScriptCompile Include="apm\src\app\products\product-edit.component.ts" />
     <TypeScriptCompile Include="apm\src\app\products\product-filter.pipe.ts" />
     <TypeScriptCompile Include="apm\src\app\products\product-list.component.ts" />
+    <TypeScriptCompile Include="apm\src\app\products\product-resolver.service.ts" />
     <TypeScriptCompile Include="apm\src\app\products\product.module.ts" />
     <TypeScriptCompile Include="apm\src\app\products\product.service.ts" />
     <TypeScriptCompile Include="apm\src\app\products\product.ts" />

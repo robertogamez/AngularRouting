@@ -23,21 +23,28 @@ export class ProductEditComponent implements OnInit {
         private router: Router) { }
 
     ngOnInit() {
-        this.route.params.subscribe(
-            params => {
-                let id = +params['id'];
-                this.getProduct(id);
-            }
-        );
+        //this.route.params.subscribe(
+        //    params => {
+        //        let id = +params['id'];
+        //        this.getProduct(id);
+        //    }
+        //);
+        // Snapshot
+        //this.onProductRetrieved(this.route.snapshot.data['product']);
+
+        // Observable
+        this.route.data.subscribe(data => {
+            this.onProductRetrieved(data['product']);
+        });
     }
 
-    getProduct(id: number): void {
-        this.productService.getProduct(id)
-            .subscribe(
-                (product: IProduct) => this.onProductRetrieved(product),
-                (error: any) => this.errorMessage = <any>error
-            );
-    }
+    //getProduct(id: number): void {
+    //    this.productService.getProduct(id)
+    //        .subscribe(
+    //        (product: IProduct) => this.onProductRetrieved(product),
+    //        (error: any) => this.errorMessage = <any>error
+    //        );
+    //}
 
     onProductRetrieved(product: IProduct): void {
         this.product = product;
@@ -53,12 +60,12 @@ export class ProductEditComponent implements OnInit {
         if (this.product.id === 0) {
             // Don't delete, it was never saved.
             this.onSaveComplete();
-       } else {
+        } else {
             if (confirm(`Really delete the product: ${this.product.productName}?`)) {
                 this.productService.deleteProduct(this.product.id)
                     .subscribe(
-                        () => this.onSaveComplete(`${this.product.productName} was deleted`),
-                        (error: any) => this.errorMessage = <any>error
+                    () => this.onSaveComplete(`${this.product.productName} was deleted`),
+                    (error: any) => this.errorMessage = <any>error
                     );
             }
         }
@@ -68,8 +75,8 @@ export class ProductEditComponent implements OnInit {
         if (true === true) {
             this.productService.saveProduct(this.product)
                 .subscribe(
-                    () => this.onSaveComplete(`${this.product.productName} was saved`),
-                    (error: any) => this.errorMessage = <any>error
+                () => this.onSaveComplete(`${this.product.productName} was saved`),
+                (error: any) => this.errorMessage = <any>error
                 );
         } else {
             this.errorMessage = 'Please correct the validation errors.';
