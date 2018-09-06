@@ -15,7 +15,7 @@ export class ProductEditComponent implements OnInit {
     errorMessage: string;
 
     product: IProduct;
-    private dataIsValid: { [key: string: boolean] } = {}
+    private dataIsValid: { [key: string]: boolean } = {}
 
     constructor(
         private productService: ProductService,
