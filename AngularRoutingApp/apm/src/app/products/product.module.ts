@@ -9,6 +9,7 @@ import { ProductEditInfoComponent } from './product-edit-info.component';
 import { ProductEditTagsComponent } from './product-edit-tags.component';
 
 import { ProductResolver } from './product-resolver.service';
+import { AuthGuard } from '../user/auth-guard.service';
 
 import { ProductFilterPipe } from './product-filter.pipe';
 import { ProductService } from './product.service';
@@ -21,6 +22,7 @@ import { SharedModule } from '../shared/shared.module';
         RouterModule.forChild([
             { 
                 path: 'products', 
+                canActivate: [ AuthGuard ],
                 children: [
                     {
                         path: '',
