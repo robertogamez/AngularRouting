@@ -15,6 +15,7 @@ import { ProductFilterPipe } from './product-filter.pipe';
 import { ProductService } from './product.service';
 
 import { SharedModule } from '../shared/shared.module';
+import { ProductEditGuard } from './product.guard.service';
 
 @NgModule({
     imports: [
@@ -36,6 +37,7 @@ import { SharedModule } from '../shared/shared.module';
                     {
                         path: ':id/edit',
                         component: ProductEditComponent,
+                        canDeactivate: [ProductEditGuard],
                         resolve: { product: ProductResolver },
                         children: [
                             {
@@ -67,7 +69,8 @@ import { SharedModule } from '../shared/shared.module';
     ],
     providers: [
         ProductService,
-        ProductResolver
+        ProductResolver,
+        ProductEditGuard
     ]
 })
 export class ProductModule { }
