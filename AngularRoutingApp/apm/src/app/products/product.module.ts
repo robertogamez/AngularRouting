@@ -22,24 +22,20 @@ import { ProductEditGuard } from './product.guard.service';
         SharedModule,
         RouterModule.forChild([
             { 
-                path: 'products', 
-                canActivate: [ AuthGuard ],
+                path: '',
+                component: ProductListComponent
+            },
+            { 
+                path: ':id', 
+                component: ProductDetailComponent, 
+                resolve: { product: ProductResolver } 
+            },
+            {
+                path: ':id/edit',
+                component: ProductEditComponent,
+                canDeactivate: [ProductEditGuard],
+                resolve: { product: ProductResolver },
                 children: [
-                    {
-                        path: '',
-                        component: ProductListComponent
-                    },
-                    { 
-                        path: ':id', 
-                        component: ProductDetailComponent, 
-                        resolve: { product: ProductResolver } 
-                    },
-                    {
-                        path: ':id/edit',
-                        component: ProductEditComponent,
-                        canDeactivate: [ProductEditGuard],
-                        resolve: { product: ProductResolver },
-                        children: [
                             {
                                 path: '',
                                 redirectTo: 'info',
@@ -55,8 +51,6 @@ import { ProductEditGuard } from './product.guard.service';
                             }
                         ]
                     }
-                ]
-            }
         ])
     ],
     declarations: [
